@@ -14,7 +14,7 @@ module Sram
     logic [WIDTH-1:0][DEPTH-1:0] Data;
 
     for (genvar i=0; i<DEPTH; i++) begin : GenSramArray
-        assign BitLine[i] = (WordLine[i] == 1'b1) ? Data[i] : 'Z;
+        assign BitLine[i] = WordLine[i] ? Data[i] : 'Z;
         always_latch begin
             if (WordLine[i]) Data[i] = BitLine[i];
         end
